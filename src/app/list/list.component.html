@@ -1,0 +1,50 @@
+<mat-card appearance="outlined">
+  <mat-card-content class="logout">
+    <button mat-raised-button (click)="logout()">Logout</button>
+  </mat-card-content>
+</mat-card>
+
+<mat-card appearance="outlined">
+  <mat-card-content>
+    <!-- Table for displaying data -->
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
+      
+      <!-- Service ID Column -->
+      <ng-container matColumnDef="serviceId">
+        <th mat-header-cell *matHeaderCellDef>No.</th>
+        <td mat-cell *matCellDef="let element">{{element.serviceId}}</td>
+      </ng-container>
+
+      <!-- Service Name Column -->
+      <ng-container matColumnDef="serviceName">
+        <th mat-header-cell *matHeaderCellDef>Service Name</th>
+        <td mat-cell *matCellDef="let element">{{element.serviceName}}</td>
+      </ng-container>
+
+      <!-- Service Date Column -->
+      <ng-container matColumnDef="serviceDate">
+        <th mat-header-cell *matHeaderCellDef>Service Date</th>
+        <td mat-cell *matCellDef="let element">{{formatDate(element.serviceDate)}}</td>
+      </ng-container>
+
+      <!-- Task Names Column -->
+      <ng-container matColumnDef="taskNames">
+        <th mat-header-cell *matHeaderCellDef>Task Names</th>
+        <td mat-cell *matCellDef="let element">{{element.taskNames}}</td>
+      </ng-container>
+
+      <!-- Actions Column -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Actions</th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-button (click)="editService(element.serviceId)">Edit</button>
+          <button mat-button (click)="deleteService(element.serviceId)">Delete</button>
+        </td>
+      </ng-container>
+
+      <!-- Header and Row Definitions -->
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </mat-card-content>
+</mat-card>
